@@ -1,0 +1,25 @@
+{
+    "name": "angular-special-select",
+    "version": "0.1.0",
+    "homepage": "https://github.com/vernak2539/angular-special-select",
+    "authors": [
+        "Alex Vernacchia <alvernacchia@gmail.com>"
+    ],
+    "description": "select without the select",
+    "keywords": [
+        "angular",
+        "select"
+    ],
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "1.2.14"
+    }
+}
