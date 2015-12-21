@@ -64,43 +64,52 @@
             }
 
             .selected-item {
-                background: rgba(127,127,127,0.2);
-            
+                background: grey;
+                opacity: 0.2;
+            }
         </style>
     </head>
     <body ng-app="testApp">
 
         <div ng-controller="testCtrl as test" style="width: 300px">
-            <div
-                data-special-select
+            <!-- <special-select
                 data-change-selected-item="test.test()"
                 data-display-property="displayName"
                 data-items="test.items"
                 data-selected-item="test.selectedThing"
-                class="special-select"></div>
+                class="special-select">
+            </special-select> -->
+
+            <special-select
+                data-change-selected-item="test.test()"
+                data-display-property="displayName"
+                data-items="test.items"
+                data-selected-item="test.selectedThing"
+                class="special-select">
+
+                <speical-select-selected-item>
+                    <div class="image" ng-if="selectedItem.imageUrl" style="background-image: url({{selectedItem.imageUrl}})"></div>
+                    {{ selectedItem.name }}test
+                </speical-select-selected-item>
+
+                <special-select-list-item>
+                    <div class="image" ng-if="item.imageUrl" style="background-image: url({{item.imageUrl}})"></div>
+                    {{ item.name }}test
+                </special-select-list-item>
+
+            </data-special-select>
+
         </div>
+
         <div class="">
             test below for positioning
         </div>
 
         <script src="//cdn.jsdelivr.net/angularjs/1.2.14/angular.min.js"></script>
-        <script type="text/ng-template" id="sampleTpl.html">
-            <div class="container">
-                <div class="selected">
-                    <div class="image" ng-if="selectedItem.imageUrl" style="background-image: url({{selectedItem.imageUrl}})"></div>
-                    {{ selectedItem[keyToDisplay] }}
-                </div>
-                <ul class="rest">
-                    <li ng-repeat="item in items" ng-click="selectItem(item)" ng-class="{ 'selected-item': item.id === selectedItem.id }">
-                        <div class="image" ng-if="item.imageUrl" style="background-image: url({{item.imageUrl}})"></div>
-                        {{ item[keyToDisplay] }}
-                    </li>
-                </ul>
-            </div>
-        </script>
+
         <script>
             angular
-                .module('testApp', [])
+                .module('testApp', ['special-inputs'])
                 .controller('testCtrl', [
                     function() {
                         this.items = [
@@ -116,48 +125,8 @@
                             console.log('test fn');
                         }
                     }
-                ])
-                .directive('specialSelect', [
-                    function() {
-                        return {
-                            restrict: 'A',
-                            scope: {
-                                changeSelectedItem: '&',
-                                displayProperty: '@',
-                                items: '=',
-                                selectedItem: '='
-                            },
-                            templateUrl: 'sampleTpl.html',
-                            link: function(scope, element, attrs) {
-                                var selectedItem = scope.selectedItem || {};
-
-                                element.addClass('special-select');
-
-                                scope.keyToDisplay = attrs.displayProperty || 'name';
-
-                                if(Object.keys(selectedItem).length === 0) {
-                                    selectedItem[scope.keyToDisplay] = 'Select something'
-                                }
-
-                                scope.selectedItem = selectedItem;
-
-                                scope.selectItem = function(item) {
-                                    scope.selectedItem = item;
-                                    element.removeClass('show');
-                                    scope.$eval(scope.changeSelectedItem)
-                                };
-
-                                element.on('mouseover', function($event) {
-                                    element.addClass('show');
-                                });
-
-                                element.on('mouseleave', function($event) {
-                                    element.removeClass('show');
-                                });
-                            }
-                        }
-                    }
-                ])
+                ]);
         </script>
+        <script src="/src/js/special-select.js" ></script>
     </body>
 </html>

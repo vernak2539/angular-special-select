@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="selected" ng-transclude="selected-item">
+        <div ng-transclude></div>
+    </div>
+    <ul class="rest">
+        <li ng-repeat="item in items" ng-click="selectItem(item)" ng-class="{ 'selected-item': item.id === selectedItem.id }">
+            <div ng-transclude="list-item"></div>
+        </li>
+    </ul>
+</div>
