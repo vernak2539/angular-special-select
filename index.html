@@ -72,32 +72,24 @@
     <body ng-app="testApp">
 
         <div ng-controller="testCtrl as test" style="width: 300px">
-            <!-- <special-select
-                data-change-selected-item="test.test()"
-                data-display-property="displayName"
-                data-items="test.items"
-                data-selected-item="test.selectedThing"
-                class="special-select">
-            </special-select> -->
 
             <special-select
                 data-change-selected-item="test.test()"
-                data-display-property="displayName"
-                data-items="test.items"
                 data-selected-item="test.selectedThing"
+                data-items="test.items"
                 class="special-select">
 
                 <speical-select-selected-item>
-                    <div class="image" ng-if="selectedItem.imageUrl" style="background-image: url({{selectedItem.imageUrl}})"></div>
-                    {{ selectedItem.name }}test
+                    {{ selectedItem.name }}{{ selectedItem.displayName }}
                 </speical-select-selected-item>
 
-                <special-select-list-item>
-                    <div class="image" ng-if="item.imageUrl" style="background-image: url({{item.imageUrl}})"></div>
-                    {{ item.name }}test
-                </special-select-list-item>
+                <!-- <special-select-list-item>
+                    <div class="image" ng-if="item.imageUrl" style="background-image: url({{item.imageUrl}})"></div> -->
+                    <!-- {{ item.name }}test
+                    test item
+                </special-select-list-item> -->
 
-            </data-special-select>
+            </special-select>
 
         </div>
 
