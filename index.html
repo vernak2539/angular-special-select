@@ -34,7 +34,7 @@
                 padding: 0;
             }
 
-            .special-select.show > .container > .rest {
+            .special-select.show .rest {
                 display: block !important;
             }
 
@@ -73,23 +73,7 @@
 
         <div ng-controller="testCtrl as test" style="width: 300px">
 
-            <special-select
-                data-change-selected-item="test.test()"
-                data-selected-item="test.selectedThing"
-                data-items="test.items"
-                class="special-select">
-
-                <speical-select-selected-item>
-                    {{ selectedItem.name }}{{ selectedItem.displayName }}
-                </speical-select-selected-item>
-
-                <!-- <special-select-list-item>
-                    <div class="image" ng-if="item.imageUrl" style="background-image: url({{item.imageUrl}})"></div> -->
-                    <!-- {{ item.name }}test
-                    test item
-                </special-select-list-item> -->
-
-            </special-select>
+            <special-select>test</special-select>
 
         </div>
 

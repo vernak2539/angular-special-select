@@ -20,6 +20,9 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.1"
+    "gulp-babel": "^6.1.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.15",
+    "karma-jasmine": "^0.3.6"
   }
 }
