@@ -40,10 +40,8 @@
                     replace: true,
                     transclude: true,
                     template: '<div class="selected" ng-transclude></div>',
-                    scope: {
-                        selectedItem: '='
-                    },
-                    link: function() {
+                    scope: true,
+                    link: function(scope) {
                         var test;
                     }
                 }

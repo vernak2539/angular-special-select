@@ -18,7 +18,7 @@
             scope.selectedItem = 'test';
 
             var element = $compile(template)(scope);
-            expect(element.isolateScope().selectedItem).toBe('test');
+            expect(element.scope().selectedItem).toBe('test');
         });
     });
 })();
