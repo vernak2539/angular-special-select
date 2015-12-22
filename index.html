@@ -73,7 +73,9 @@
 
         <div ng-controller="testCtrl as test" style="width: 300px">
 
-            <special-select>test</special-select>
+            <special-select
+                data-selected-item="test.selectedThing"
+                data-change-selected-item="test.test">test</special-select>
 
         </div>
 

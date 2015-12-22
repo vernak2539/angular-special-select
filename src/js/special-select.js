@@ -11,9 +11,15 @@
                     transclude: true,
                     template: '<div class="container" ng-transclude></div>',
                     scope: {
-                        selectedItem: '='
+                        selectedItem: '=',
+                        items: '=?',
+                        changeSelectedItem: '&?'
                     },
                     link: function(scope, element) {
+                        if(!angular.isArray(scope.items)) {
+                            scope.items = [];
+                        }
+
                         element.addClass('special-select');
 
                         element.on('mouseover', function() {
@@ -26,7 +32,23 @@
                     }
                 }
             }
-        ]);
+        ])
+        .directive('specialSelectSelectedItem', [
+            function() {
+                return {
+                    restrict: 'E',
+                    replace: true,
+                    transclude: true,
+                    template: '<div class="selected" ng-transclude></div>',
+                    scope: {
+                        selectedItem: '='
+                    },
+                    link: function() {
+                        var test;
+                    }
+                }
+            }
+        ])
 
     // angular
     //     .module('special-inputs', [])
