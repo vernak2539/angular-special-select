@@ -15,10 +15,11 @@
 
         it('should get the selected item from the parent', function() {
             var template = '<special-select-selected-item></special-select-selected-item>';
-            scope.selectedItem = 'test';
+            var testValue = 'test';
+            scope.selectedItem = testValue;
 
             var element = $compile(template)(scope);
-            expect(element.scope().selectedItem).toBe('test');
+            expect(element.scope().item).toBe(testValue);
         });
     });
 })();

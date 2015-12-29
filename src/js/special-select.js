@@ -15,21 +15,39 @@
                         items: '=?',
                         changeSelectedItem: '&?'
                     },
-                    link: function(scope, element) {
-                        if(!angular.isArray(scope.items)) {
-                            scope.items = [];
+                    // link: function(scope, element) {
+                    //     if(!angular.isArray(scope.items)) {
+                    //         scope.items = [];
+                    //     }
+                    //
+                    //     element.addClass('special-select');
+                    //
+                    //     element.on('mouseover', function() {
+                    //         element.addClass('show');
+                    //     });
+                    //
+                    //     element.on('mouseleave', function() {
+                    //         element.removeClass('show');
+                    //     });
+                    // }
+                    link: {
+                        pre: function(scope) {
+                            console.log('parent link pre - ', scope.selectedItem);
+                        },
+                        post: function(scope) {
+                            console.log('parent link post - ', scope.selectedItem);
                         }
-
-                        element.addClass('special-select');
-
-                        element.on('mouseover', function() {
-                            element.addClass('show');
-                        });
-
-                        element.on('mouseleave', function() {
-                            element.removeClass('show');
-                        });
-                    }
+                    },
+                    // compile: function() {
+                    //     return {
+                    //         // pre: function(scope) {
+                    //         //     console.log('child compile pre - ', scope.selectedItem);
+                    //         // },
+                    //         post: function(scope) {
+                    //             console.log('child compile post - ', scope.selectedItem);
+                    //         }
+                    //     }
+                    // }
                 }
             }
         ])
@@ -41,12 +59,48 @@
                     transclude: true,
                     template: '<div class="selected" ng-transclude></div>',
                     scope: true,
-                    link: function(scope) {
-                        var test;
-                    }
+                    link: {
+                        pre: function(scope) {
+                            console.log('child link pre - ', scope.selectedItem);
+                        },
+                        post: function(scope) {
+                            console.log('child link post - ', scope.selectedItem);
+                        }
+                    },
+                    // compile: function() {
+                    //     return {
+                    //         pre: function(scope) {
+                    //             console.log('child compile pre - ', scope.selectedItem);
+                    //         },
+                    //         post: function(scope) {
+                    //             console.log('child compile post - ', scope.selectedItem);
+                    //         }
+                    //     }
+                    // }
+                    // controller: [
+                    //     '$scope',
+                    //     function($scope) {
+                    //         console.log($scope.selectedItem);
+                    //     }
+                    // ]
                 }
             }
         ])
+        // .directive('special-select-item', [
+        //     function() {
+        //         return {
+        //             restrict: 'E',
+        //             replace: true,
+        //             transclude: true,
+        //             require: '^specialSelect',
+        //             template: '<ul class="rest">' +
+        //                 '<li ng-repeat="item in items" ng-click="selectItem(item)" ng-class="{ \'selected-item\': item.id === selectedItem.id }">' +
+        //                     '<div ng-transclude></div>' +
+        //                 '</li>' +
+        //             '</ul>'
+        //         }
+        //     }
+        // ])
 
     // angular
     //     .module('special-inputs', [])

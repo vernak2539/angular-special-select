@@ -75,7 +75,17 @@
 
             <special-select
                 data-selected-item="test.selectedThing"
-                data-change-selected-item="test.test">test</special-select>
+                data-change-selected-item="test.test"
+                data-items="test.items">
+
+                <special-select-selected-item>
+                    {{item.id + 1}} - test
+                </special-select-selected-item>
+
+                <special-select-item>
+                    {{item.id}} - {{item.name}}
+                </special-select-item>
+            </special-select>
 
         </div>
 
@@ -83,7 +93,7 @@
             test below for positioning
         </div>
 
-        <script src="//cdn.jsdelivr.net/angularjs/1.2.14/angular.min.js"></script>
+        <script src="//cdn.jsdelivr.net/angularjs/1.2.14/angular.js"></script>
 
         <script>
             angular
