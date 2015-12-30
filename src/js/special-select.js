@@ -6,10 +6,10 @@
         .directive('specialSelect', [
             function() {
                 return {
-                    // restrict: 'A',
-                    // replace: true,
-                    // transclude: true,
-                    // template: '<div class="container" ng-transclude></div>',
+                    restrict: 'A',
+                    replace: true,
+                    transclude: true,
+                    template: '<div class="container" ng-transclude></div>',
                     scope: {
                         selectedItem: '=',
                         items: '=?',
@@ -30,14 +30,9 @@
                     //         element.removeClass('show');
                     //     });
                     // }
-                    link: {
-                        pre: function(scope) {
-                            console.log('parent link pre - ', scope.selectedItem);
-                        },
-                        post: function(scope) {
-                            console.log('parent link post - ', scope.selectedItem);
-                        }
-                    },
+                    controller: ['$scope', function ($scope) {
+                        this.selected = $scope.selectedItem;
+                    }],
                     // compile: function() {
                     //     return {
                     //         // pre: function(scope) {
@@ -55,17 +50,13 @@
             function() {
                 return {
                     restrict: 'A',
-                    // replace: true,
-                    // transclude: true,
-                    // template: '<div class="selected" ng-transclude></div>',
-                    scope: false,
-                    link: {
-                        pre: function(scope) {
-                            console.log('child link pre - ', scope.selectedItem);
-                        },
-                        post: function(scope) {
-                            console.log('child link post - ', scope.selectedItem);
-                        }
+                    replace: true,
+                    transclude: true,
+                    template: '<div class="selected" ng-transclude></div>',
+                    require: '^specialSelect',
+                    link: function (scope, element, attrs, mainCtrl) {
+
+                        scope.item = mainCtrl.selected;
                     },
                     // compile: function() {
                     //     return {
