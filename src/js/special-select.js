@@ -6,14 +6,14 @@
         .directive('specialSelect', [
             function() {
                 return {
-                    restrict: 'E',
-                    replace: true,
-                    transclude: true,
-                    template: '<div class="container" ng-transclude></div>',
+                    // restrict: 'A',
+                    // replace: true,
+                    // transclude: true,
+                    // template: '<div class="container" ng-transclude></div>',
                     scope: {
                         selectedItem: '=',
                         items: '=?',
-                        changeSelectedItem: '&?'
+                        // changeSelectedItem: '&?'
                     },
                     // link: function(scope, element) {
                     //     if(!angular.isArray(scope.items)) {
@@ -54,11 +54,11 @@
         .directive('specialSelectSelectedItem', [
             function() {
                 return {
-                    restrict: 'E',
-                    replace: true,
-                    transclude: true,
-                    template: '<div class="selected" ng-transclude></div>',
-                    scope: true,
+                    restrict: 'A',
+                    // replace: true,
+                    // transclude: true,
+                    // template: '<div class="selected" ng-transclude></div>',
+                    scope: false,
                     link: {
                         pre: function(scope) {
                             console.log('child link pre - ', scope.selectedItem);
