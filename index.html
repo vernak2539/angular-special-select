@@ -73,15 +73,22 @@
 
         <div ng-controller="testCtrl as test" style="width: 300px">
 
-            <div special-select
+            <special-select
                 data-selected-item="test.selectedThing"
                 data-change-selected-item="test.test"
-                data-items="test.items"
-                class="container">
+                data-items="test.items">
 
-                <div special-select-selected-item class="selected">
-                    {{item.id + 1}} - test
-                </div>
+                <special-select-selected-item>
+                    {{item.id}} - selected
+                </special-select-selected-item>
+
+                <special-select-item>
+                  {{item.name}} - item
+                </special-select-item>
+            </special-select>
+
+            <div class="">
+              {{test.selectedThing.id}}
             </div>
 
         </div>

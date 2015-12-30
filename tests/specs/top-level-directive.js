@@ -78,19 +78,6 @@
                 expect(element.isolateScope().items).toBe(items);
             });
 
-            it('should set empty array of items if variable is invalid', function() {
-                // Arrange
-                var template = '<special-select data-items="items"></special-select>'
-                scope.items = null;
-                var element = $compile(template)(scope);
-
-                // Act
-                scope.$digest();
-
-                // Assert
-                expect(angular.isArray(element.isolateScope().items)).toBe(true);
-            });
-
             it('should allow for function to be passed for change events', function() {
                 // Arrange
                 var element;
