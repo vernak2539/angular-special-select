@@ -1,16 +1,18 @@
 (function(angular) {
     'use strict';
 
+// https://jsbin.com/qumayupomu/edit?js,output
     angular
         .module('special-inputs', [])
         .controller('special-inputs.specialSelectCtrl', [
           '$scope',
           function($scope) {
-            this.selectedItem = $scope.selectedItem;
+            this.selectedItem = { item: $scope.selectedItem };
             this.items = angular.isArray($scope.items) ? $scope.items : [];
 
             this.selectMe = function(newItem) {
               $scope.selectedItem = newItem;
+              this.selectedItem = { item: newItem };
               // $scope.$eval($scope.changeSelectedItem, { item: newItem });
             }.bind(this);
           }
@@ -22,6 +24,7 @@
                     replace: true,
                     transclude: true,
                     template: '<div class="container" ng-transclude></div>',
+                    controller: 'special-inputs.specialSelectCtrl',
                     scope: {
                         selectedItem: '=',
                         items: '=?',
@@ -37,8 +40,7 @@
                         element.on('mouseleave', function() {
                             element.removeClass('show');
                         });
-                    },
-                    controller: 'special-inputs.specialSelectCtrl'
+                    }
                 }
             }
         ])
@@ -52,7 +54,11 @@
                     scope: false,
                     require: '^specialSelect',
                     link: function(scope, element, attrs, mainCtrl) {
-                      scope.item = mainCtrl.selectedItem;
+                        scope.$watch(function() {
+                            return mainCtrl.selectedItem;
+                        }, function(newItem) {
+                          scope.item = newItem.item;
+                        });
                     }
                 }
             }
@@ -74,6 +80,7 @@
                     },
                     link: function(scope, element, attrs, mainCtrl) {
                       scope.items = mainCtrl.items;
+                      scope.selectedItem = mainCtrl.selectedItem;
 
                       scope.selectItem = function(item) {
                         mainCtrl.selectMe(item);
