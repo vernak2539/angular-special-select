@@ -14,81 +14,29 @@
                 padding: 0;
                 list-style: none;
             }
-            .container {
-                border: 1px solid red;
-                width: 100%;
-                position: relative;
-            }
-
-            .selected {
-                border: 1px solid black;
-            }
-
-            .rest {
-                border: 1px solid green;
-                display: none;
-                position: absolute;
-                left: 0;
-                background: #fff;
-                width: 100%;
-                padding: 0;
-            }
-
-            .special-select.show .rest {
-                display: block !important;
-            }
-
-            .rest > li {
-                cursor: pointer;
-            }
-
-            .rest > li:hover {
-                background: rgba(127,127,127,0.3);
-            }
-
-            .rest > li, .selected {
-                border: 1px solid blue;
-                display: flex;
-                flex-align: center;
-                align-items: center;
-                padding: 5px;
-            }
-
-            .rest > li > .image, .selected > .image {
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center center;
-                width: 50px;
-                height: 50px;
-                margin-right: 10px;
-            }
-
-            .selected-item {
-                background: grey;
-                opacity: 0.2;
-            }
         </style>
+        <link rel="stylesheet" href="/dist/styles/default.css" />
     </head>
     <body ng-app="testApp">
 
         <div ng-controller="testCtrl as test" style="width: 300px">
-
+            blah
             <special-select
                 data-selected-item="test.selectedThing"
-                data-change-selected-item="test.test"
+                data-on-selected-change="test.test()"
                 data-items="test.items">
 
                 <special-select-selected-item>
-                    {{item.id}} - selected
+                    {{item.name}} - selected
                 </special-select-selected-item>
 
                 <special-select-item>
-                  {{item.name}} - item
+                  {{item.displayName}} - item
                 </special-select-item>
             </special-select>
 
             <div class="">
-              {{test.selectedThing.id}}
+              <pre>{{test.selectedThing}}</pre>
             </div>
 
         </div>
@@ -98,10 +46,9 @@
         </div>
 
         <script src="//cdn.jsdelivr.net/angularjs/1.2.14/angular.js"></script>
-
         <script>
             angular
-                .module('testApp', ['special-inputs'])
+                .module('testApp', ['special-select'])
                 .controller('testCtrl', [
                     function() {
                         this.items = [
@@ -119,6 +66,6 @@
                     }
                 ]);
         </script>
-        <script src="/src/js/special-select.js" ></script>
+        <script src="/dist/special-select.js" ></script>
     </body>
 </html>

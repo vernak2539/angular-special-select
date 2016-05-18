@@ -1,0 +1,28 @@
+.special-select-container {
+  width: 100%;
+  position: relative;
+}
+.special-select-container .selected-item {
+  border: 1px solid #000;
+}
+.special-select-container .selected-item-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  padding: 0;
+}
+.special-select-container .selected-item-list >li {
+  cursor: pointer;
+}
+.special-select-container .selected-item-list >li:hover {
+  background: rgba(127,127,127,0.3);
+}
+.special-select-container .selected-item-list >.selected-item-in-dropdown {
+  background: #808080;
+  opacity: 0.2;
+}
+.special-select-container.show .selected-item-list {
+  display: block !important;
+}

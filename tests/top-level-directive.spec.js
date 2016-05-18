@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    describe('Top level directive (specialSelect)', function() {
+    describe('top level directive (specialSelect)', function() {
         var $compile;
         var scope;
         var sampleTemplate;
 
-        beforeEach(module('special-inputs'));
+        beforeEach(module('special-select'));
 
         beforeEach(inject(function($injector) {
             $compile = $injector.get('$compile');
@@ -53,7 +53,7 @@
             it('should have selected item on scope', function() {
                 // Arrange
                 var item     = 'myTestItem';
-                var template = '<special-select data-selected-item="selectedItem"></special-select>'
+                var template = '<special-select data-selected-item="selectedItem"></special-select>';
                 scope.selectedItem = item;
                 var element = $compile(template)(scope);
 
@@ -67,7 +67,7 @@
             it('should allow for an array of items on scope', function() {
                 // Arrange
                 var items     = ['item1', 'item2'];
-                var template = '<special-select data-items="items"></special-select>'
+                var template = '<special-select data-items="items"></special-select>';
                 scope.items = items;
                 var element = $compile(template)(scope);
 
@@ -82,7 +82,7 @@
                 // Arrange
                 var element;
                 var returnVal = 'test';
-                var template = '<special-select data-change-selected-item="fn()"></special-select>'
+                var template = '<special-select data-on-selected-change="fn()"></special-select>';
                 scope.fn = function() { return returnVal; };
                 element = $compile(template)(scope);
 
@@ -90,7 +90,7 @@
                 scope.$digest();
 
                 // Assert
-                expect(element.isolateScope().changeSelectedItem()).toBe(returnVal);
+                expect(element.isolateScope().onSelectedChange()).toBe(returnVal);
             });
         });
     });

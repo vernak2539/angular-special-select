@@ -1,17 +1,14 @@
 'use strict';
 
-var gulp = require('gulp');
-var babel = require('gulp-babel');
+var gulp     = require('gulp');
+var workflow = require('gulp-workflow');
 
-
-gulp.task('js', function() {
-    return gulp.src('./src/js/special-select.js')
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('watch', function() {
-    gulp.watch('./src/js/*.js', ['js']);
-});
+workflow
+    .load(gulp)
+    .task('release', 'Generate dist files', [['clean', 'lint'], ['build:js', 'build:css'], 'karma'], {
+        optimizeCss: 'Optimize CSS'
+    })
+    .task('lint', 'Run JSHint', ['jshint'])
+    .task('tests', 'Run unit tests', [['clean', 'lint'], 'build:js', 'karma'], {
+        ci: 'For use on TravisCI with SauceLabs'
+    });
