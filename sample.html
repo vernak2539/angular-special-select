@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Alpah special select</title>
+        <style type="text/css">
+            body {
+                font-size: 2em;
+                font-weight: bold;
+                box-sizing: border-box;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+        </style>
+        <link rel="stylesheet" href="/dist/styles/default.css" />
+    </head>
+    <body ng-app="testApp">
+
+        <div ng-controller="testCtrl as test" style="width: 300px">
+            blah
+            <special-select
+                data-selected-item="test.selectedThing"
+                data-on-selected-change="test.test()"
+                data-items="test.items">
+
+                <special-select-selected-item>
+                    {{item.name}} - selected
+                </special-select-selected-item>
+
+                <special-select-item>
+                  {{item.displayName}} - item
+                </special-select-item>
+            </special-select>
+
+            <div class="">
+              <pre>{{test.selectedThing}}</pre>
+            </div>
+
+        </div>
+
+        <div class="">
+            test below for positioning
+        </div>
+
+        <script src="//cdn.jsdelivr.net/angularjs/1.2.14/angular.js"></script>
+        <script>
+            angular
+                .module('testApp', ['special-select'])
+                .controller('testCtrl', [
+                    function() {
+                        this.items = [
+                            { id: 1, name: 'alex 1', displayName:"alex 1 dn", imageUrl: 'http://placehold.it/505x100' },
+                            { id: 2, name: 'alex 2', displayName:"alex 2 dn", imageUrl: 'http://placehold.it/50x50'  },
+                            { id: 3, name: 'alex 3', displayName:"alex 3 dn", imageUrl: 'http://placehold.it/50x50'  },
+                            { id: 4, name: 'alex 4', displayName:"alex 4 dn", imageUrl: 'http://placehold.it/50x50'  },
+                        ];
+
+                        this.selectedThing = this.items[0];
+
+                        this.test = function() {
+                            console.log('test fn');
+                        }
+                    }
+                ]);
+        </script>
+        <script src="/dist/special-select.js" ></script>
+    </body>
+</html>

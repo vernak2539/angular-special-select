@@ -1,0 +1,31 @@
+{
+  "bitwise": true,
+  "boss": true,
+  "browser": true,
+  "curly": true,
+  "debug": false,
+  "devel": true,
+  "eqeqeq": true,
+  "esversion": 6,
+  "expr": true,
+  "latedef": false,
+  "laxbreak": true,
+  "laxcomma": true,
+  "newcap": true,
+  "node": true,
+  "shadow": false,
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "angular": true,
+    "beforeEach": true,
+    "describe": true,
+    "expect": true,
+    "it": true,
+    "inject": true,
+    "jasmine": true,
+    "module": true,
+    "spyOn": true
+  }
+}

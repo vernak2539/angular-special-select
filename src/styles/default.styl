@@ -1,0 +1,46 @@
+.special-select-container {
+    width: 100%;
+    position: relative;
+
+    .selected-item {
+        border: 1px solid black;
+        {items}
+    }
+
+    .selected-item-list {
+        display: none;
+        position: absolute;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        padding: 0;
+
+        >li {
+            cursor: pointer;
+            {items}
+
+            &:hover {
+                    background: rgba(127,127,127,0.3);
+            }
+        }
+
+        >.selected-item-in-dropdown {
+            background: grey;
+            opacity: 0.2;
+        }
+    }
+
+    &.show {
+        .selected-item-list {
+            display: block !important;
+        }
+    }
+
+}
+
+items = @block {
+    display: flex;
+    flex-align: center;
+    align-items: center;
+    padding: 5px;
+}
