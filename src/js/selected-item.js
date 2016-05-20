@@ -9,20 +9,25 @@ const SelectedItemDirective = () => ({
     replace: true,
     transclude: true,
     template: '<div class="selected-item" ng-transclude></div>',
-    scope: false,
+    scope: {},
     require: '^' + SpecialSelectTopDirective.name,
-    link(scope, element, attrs, mainCtrl) {
-        var toWatch = function() {
-            return mainCtrl._internalSelected;
-        };
-        var onChange = function(newItem) {
-            if(!newItem) {
-                return;
-            }
-            scope.item = newItem.item;
-        };
+    link(scope, element, attrs, mainCtrl, transclude) {
+        transclude(scope, (clone, scope) => {
+            var toWatch = function() {
+                return mainCtrl._internalSelected;
+            };
+            var onChange = function(newItem) {
+                if(!newItem) {
+                    return;
+                }
+                scope.item = newItem.item;
+            };
 
-        scope.$watch(toWatch, onChange);
+            element.empty();
+            element.append(clone);
+
+            scope.$watch(toWatch, onChange);
+        });
     }
 });
 

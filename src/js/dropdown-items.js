@@ -9,7 +9,7 @@ const SpecialSelectDropdownItems = () => ({
     replace: true,
     transclude: true,
     require: '^' + SpecialSelectTopDirective.name,
-    scope: false,
+    scope: {},
     template() {
         return (
             '<ul class="selected-item-list">' +
